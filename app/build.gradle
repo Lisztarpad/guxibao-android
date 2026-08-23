@@ -27,6 +27,9 @@ android {
                 keyAlias System.getenv("GUXIBAO_KEY_ALIAS")
                 keyPassword System.getenv("GUXIBAO_KEY_PASSWORD")
                 storeType "PKCS12"
+                // v2 保证 Android 7+ 安装；v3 额外支持将来轮换签名密钥
+                enableV2Signing true
+                enableV3Signing true
             }
         }
     }
