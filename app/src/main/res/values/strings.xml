@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">股息宝</string>
+    <string name="offline_open_browser">用浏览器打开</string>
+</resources>

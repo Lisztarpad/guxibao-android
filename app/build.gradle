@@ -1,0 +1,62 @@
+plugins {
+    id 'com.android.application'
+}
+
+// 签名信息全部来自环境变量（CI 由 GitHub Secrets 注入）。
+// 本地没有配置时自动回落到 debug 签名，方便直接跑 assembleDebug。
+def ksPath = System.getenv("GUXIBAO_KEYSTORE_FILE")
+def hasReleaseKeystore = ksPath != null && !ksPath.isEmpty() && file(ksPath).exists()
+
+android {
+    namespace 'eu.lizihan.guxibao'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "eu.lizihan.guxibao"
+        minSdk 24
+        targetSdk 35
+        versionCode 1
+        versionName "1.0"
+    }
+
+    signingConfigs {
+        if (hasReleaseKeystore) {
+            release {
+                storeFile file(ksPath)
+                storePassword System.getenv("GUXIBAO_KEYSTORE_PASSWORD")
+                keyAlias System.getenv("GUXIBAO_KEY_ALIAS")
+                keyPassword System.getenv("GUXIBAO_KEY_PASSWORD")
+                storeType "PKCS12"
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig hasReleaseKeystore ? signingConfigs.release : signingConfigs.debug
+        }
+        debug {
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-debug"
+        }
+    }
+
+    lint {
+        // 这个壳有意重写了高版本才有的回调（如 onRenderProcessGone），运行时靠 SDK_INT
+        // 分支保护，不让 lint 的 NewApi 误报卡住 release 构建
+        abortOnError false
+        checkReleaseBuilds false
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core:1.15.0'
+}

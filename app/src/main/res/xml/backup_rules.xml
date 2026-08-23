@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- WebView 的 localStorage / Cookie 都落在 app 私有目录，随系统备份一起走 -->
+    <include domain="file" path="." />
+    <exclude domain="file" path="app_webview/Default/GPUCache" />
+    <exclude domain="file" path="cache" />
+</full-backup-content>

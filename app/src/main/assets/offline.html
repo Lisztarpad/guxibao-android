@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>股息宝</title>
+<style>
+  :root { color-scheme: dark; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: #0B1120;
+    color: #E2E8F0;
+    font-family: -apple-system, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 24px;
+    -webkit-user-select: none; user-select: none;
+  }
+  .ring {
+    width: 72px; height: 72px; margin: 0 auto 24px;
+    border-radius: 50%;
+    border: 8px solid #1E293B;
+    border-top-color: #E0B84C;
+  }
+  h1 { font-size: 19px; font-weight: 600; margin: 0 0 8px; }
+  p  { font-size: 14px; line-height: 1.6; color: #94A3B8; margin: 0 0 28px; }
+  button {
+    font: inherit; font-size: 15px; font-weight: 600;
+    color: #0B1120; background: #E0B84C;
+    border: 0; border-radius: 10px; padding: 12px 32px;
+    cursor: pointer;
+  }
+  button:active { opacity: .8; }
+</style>
+</head>
+<body>
+  <main>
+    <div class="ring"></div>
+    <h1>连不上股息宝</h1>
+    <p>请检查网络连接后重试。<br>已录入的数据保存在本机，不会丢失。</p>
+    <button onclick="location.href='https://guxibao.lizihan.eu/'">重试</button>
+  </main>
+</body>
+</html>

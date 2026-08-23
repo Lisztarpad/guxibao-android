@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 取自图标底色，与站点 theme-color 同一深色系，保证启动无白闪 -->
+    <color name="app_background">#FF0B1120</color>
+    <color name="icon_background">#FF0B1120</color>
+    <color name="accent">#FFE0B84C</color>
+</resources>
